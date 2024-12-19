@@ -10,6 +10,18 @@ This is a simple library management system built with Flask and SQLite. It allow
 - Authentication via tokens
 - API endpoints for interacting with the system
 
+### Design Decisions
+
+- **Flask and SQLite**: Chose Flask due to its simplicity and flexibility for building RESTful APIs, and SQLite for a lightweight, file-based database.
+- **Token-Based Authentication**: Used token-based authentication for secure API access to manage books and members.
+- **RESTful API Design**: Used RESTful design principles for the API, ensuring clear separation of concerns and scalability.
+
+### Assumptions and Limitations
+
+- The system is designed for a single user (admin), without support for multiple users managing the library concurrently.
+- No email validation for members is currently in place.
+- No role management is implemented (all users have the same permissions).
+
 ## Installation
 
 ### Prerequisites
