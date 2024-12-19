@@ -1,0 +1,36 @@
+*__pycache__/*
+*.env
+app.log
+venv/
+migrations/# Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment files
+*.env
+
+# Log files
+*.log
+
+# Virtual environment
+venv/
+
+# Django migrations
+migrations/
+
+
+# Media files (if applicable)
+media/
+staticfiles/
+
+# IDE/editor files
+.vscode/
+.idea/
+
+# macOS files
+.DS_Store
+
+# Docker-related files
+*.dockerignore
+docker-compose.override.yml

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library API Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+        }
+        .container {
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .route {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 10px 0;
+        }
+        .route h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .route p {
+            margin: 10px 0;
+        }
+        .code-block {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .response {
+            color: green;
+        }
+        .request {
+            color: blue;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Library API Documentation</h1>
+</header>
+
+<div class="container">
+    <section class="route">
+        <h2>Authentication Routes</h2>
+
+        <div class="route">
+            <h3>POST /login</h3>
+            <p><strong>Description:</strong> Authenticates a user and returns a token.</p>
+            <p><strong>Request Body:</strong></p>
+            <div class="code-block">
+                {
+                    "username": "string",
+                    "password": "string"
+                }
+            </div>
+            <p><strong>Response:</strong></p>
+            <p><strong class="response">200 OK</strong>: Returns an authentication token.</p>
+            <div class="code-block">
+                {
+                    "token": "string"
+                }
+            </div>
+            <p><strong class="response">400 Bad Request</strong>: Invalid credentials.</p>
+        </div>
+
+        <div class="route">
+            <h3>POST /register</h3>
+            <p><strong>Description:</strong> Registers a new user.</p>
+            <p><strong>Request Body:</strong></p>
+            <div class="code-block">
+                {
+                    "username": "string",
+                    "password": "string"
+                }
+            </div>
+            <p><strong>Response:</strong></p>
+            <p><strong class="response">201 Created</strong>: Successfully created a new user.</p>
+            <p><strong class="response">400 Bad Request</strong>: Invalid input.</p>
+        </div>
+    </section>
+
+    <section class="route">
+        <h2>Book Routes</h2>
+
+        <div class="route">
+            <h3>GET /books</h3>
+            <p><strong>Description:</strong> Retrieve a list of all books in the library, with optional search and pagination.</p>
+            <p><strong>Query Parameters:</strong></p>
+            <div class="code-block">
+                title: "string" (optional)
+                author: "string" (optional)
+                page: 1 (optional)
+                per_page: 5 (optional)
+            </div>
+            <p><strong>Response:</strong></p>
+            <p><strong class="response">200 OK</strong>: Returns a list of books.</p>
+            <div class="code-block">
+                [
+                    {
+                        "id": "string",
+                        "title": "string",
+                        "author": "string",
+                        "year": "string"
+                    },
+                    ...
+                ]
+            </div>
+        </div>
+
+        <div class="route">
+            <h3>POST /books</h3>
+            <p><strong>Description:</strong> Add a new book to the library.</p>
+            <p><strong>Request Body:</strong></p>
+            <div class="code-block">
+                {
+                    "title": "string",
+                    "author": "string",
+                    "year": "string"
+                }
+            </div>
+            <p><strong>Response:</strong></p>
+            <p><strong class="response">201 Created</strong>: Successfully created a new book.</p>
+            <p><strong class="response">401 Unauthorized</strong>: Token required or invalid token.</p>
+        </div>
+
+        <div class="route">
+            <h3>GET /books/{book_id}</h3>
+            <p><strong>Description:</strong> Retrieve details of a specific book by its ID.</p>
+            <p><strong>Response:</strong></p>
+            <p><strong class="response">200 OK</strong>: Returns book details.</p>
+            <p><strong class="response">404 Not Found</strong>: Book with the specified ID not found.</p>
+        </div>
+
+        <div class="route">
+            <h3>PUT /books/{book_id}</h3>
+            <p><strong>Description:</strong> Update details of an existing book.</p>
+            <p><strong>Request Body:</strong></p>
+            <div class="code-block">
+                {
+                    "title": "string",
+                    "author": "string",
+                    "year": "string"
+                }
+            </div>
+            <p><strong>Response:</strong></p>
+            <p><strong class="response">200 OK</strong>: Successfully updated the book.</p>
+            <p><strong class="response">401 Unauthorized</strong>: Token required or invalid token.</p>
+        </div>
+
+        <div class="route">
+            <h3>DELETE /books/{book_id}</h3>
+            <p><strong>Description:</strong> Delete a specific book by its ID.</p>
+            <p><strong>Response:</strong></p>
+            <p><strong class="response">200 OK</strong>: Successfully deleted the book.</p>
+            <p><strong class="response">401 Unauthorized</strong>: Token required or invalid token.</p>
+        </div>
+    </section>
+
+    <section class="route">
+        <h2>Member Routes</h2>
+
+        <div class="route">
+            <h3>GET /members</h3>
+            <p><strong>Description:</strong> Retrieve a list of all members in the library.</p>
+            <p><strong>Response:</strong></p>
+            <p><strong class="response">200 OK</strong>: Returns a list of members.</p>
+            <div class="code-block">
+                [
+                    {
+                        "id": "string",
+                        "name": "string",
+                        "email": "string"
+                    },
+                    ...
+                ]
+            </div>
+        </div>
+
+        <div class="route">
+            <h3>POST /members</h3>
+            <p><strong>Description:</strong> Add a new member to the library.</p>
+            <p><strong>Request Body:</strong></p>
+            <div class="code-block">
+                {
+                    "name": "string",
+                    "email": "string"
+                }
+            </div>
+            <p><strong>Response:</strong></p>
+            <p><strong class="response">201 Created</strong>: Successfully created a new member.</p>
+            <p><strong class="response">401 Unauthorized</strong>: Token required or invalid token.</p>
+        </div>
+
+        <div class="route">
+            <h3>PUT /members/{member_id}</h3>
+            <p><strong>Description:</strong> Update details of an existing member.</p>
+            <p><strong>Request Body:</strong></p>
+            <div class="code-block">
+                {
+                    "name": "string",
+                    "email": "string"
+                }
+            </div>
+            <p><strong>Response:</strong></p>
+            <p><strong class="response">200 OK</strong>: Successfully updated the member.</p>
+            <p><strong class="response">401 Unauthorized</strong>: Token required or invalid token.</p>
+        </div>
+
+        <div class="route">
+            <h3>DELETE /members/{member_id}</h3>
+            <p><strong>Description:</strong> Delete a specific member by their ID.</p>
+            <p><strong>Response:</strong></p>
+            <p><strong class="response">200 OK</strong>: Successfully deleted the member.</p>
+            <p><strong class="response">401 Unauthorized</strong>: Token required or invalid token.</p>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    <p>&copy; 2024 Library API. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
